@@ -31,3 +31,11 @@ body {
     place-items: start center;
     padding: var(--base-separation) var(--base-separation);
 }
+
+.row {
+    display: flex;
+}
+
+input {
+    width: 100px;
+}
