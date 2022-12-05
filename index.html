@@ -12,7 +12,21 @@
         <title>withLatestFrom-Examples</title>
     </head>
     <body>
-        <div id="app"></div>
+        <form onsubmit="return false">
+            <select name="category" id="category">
+                <option value="all">Todas</option>
+                <option value="books">Libros</option>
+                <option value="films">Películas</option>
+            </select>
+            <input
+                type="text"
+                name="search"
+                id="search"
+                autocomplete="off"
+                placeholder="Buscar ..."
+            />
+        </form>
+        <ul id="results-container" class="hidden"></ul>
         <script type="module" src="/src/main.ts"></script>
     </body>
 </html>
