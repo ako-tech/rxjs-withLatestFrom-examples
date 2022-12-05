@@ -1,44 +1,16 @@
-import {
-    fromEvent,
-    map,
-    Observable,
-    of,
-    startWith,
-    switchMap,
-    takeWhile,
-    tap,
-    timer,
-    withLatestFrom,
-} from "rxjs";
+import { fromEvent, map, tap, timer, withLatestFrom } from "rxjs";
+import { renderCount } from "./renderer";
 import "./style.css";
 
 const count = document.getElementById("count") as HTMLElement;
-const seconds = document.getElementById("seconds") as HTMLInputElement;
-const toggle = document.getElementById("start-stop") as HTMLButtonElement;
+const logBtn = document.getElementById("log-button") as HTMLButtonElement;
 
-const toggleClick = fromEvent(toggle, "click");
-const secondsValueChanges = fromEvent(seconds, "input").pipe(
-    map(({ target }) => (target as HTMLInputElement).value),
-    startWith(seconds.value)
-);
+const logClick$ = fromEvent(logBtn, "click");
+const counter$ = timer(0, 1000).pipe(tap(renderCount));
 
-const generateCountDown = (lengthInSeconds: number): Observable<number> => {
-    const step = 1000;
-
-    return of(lengthInSeconds).pipe(
-        switchMap((seconds) =>
-            timer(0, step).pipe(
-                map((tick) => seconds - tick),
-                takeWhile((count) => count >= 0)
-            )
-        )
-    );
-};
-
-toggleClick
+logClick$
     .pipe(
-        withLatestFrom(secondsValueChanges, (_, seconds) => Number(seconds)),
-        switchMap((seconds) => generateCountDown(seconds)),
-        tap((currentCount) => (count.textContent = `${currentCount}`))
+        withLatestFrom(counter$, (event, count) => count)
+        // map(([event, count]) => count)
     )
-    .subscribe();
+    .subscribe(console.log);

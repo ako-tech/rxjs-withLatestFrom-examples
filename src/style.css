@@ -10,11 +10,10 @@
 }
 
 * {
-    font-family: var(--default-font-family);
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    font: inherit;
+    font-family: var(--default-font-family);
 }
 
 html {
@@ -28,14 +27,36 @@ body {
     display: grid;
     grid-template: 1fr / 1fr;
     width: 100%;
-    place-items: start center;
+    height: 100vh;
+    place-items: center;
     padding: var(--base-separation) var(--base-separation);
 }
 
-.row {
+.wrapper {
     display: flex;
+    flex-direction: column;
+    gap: var(--half-separation);
+    align-items: center;
 }
 
-input {
-    width: 100px;
+#count {
+    font-size: 5em;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+button {
+    padding: 12px 16px;
+    background-color: #5e00ea;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.875em;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #7d29fa;
+    outline: none;
 }
