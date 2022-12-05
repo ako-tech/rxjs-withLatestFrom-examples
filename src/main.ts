@@ -2,7 +2,6 @@ import { fromEvent, map, tap, timer, withLatestFrom } from "rxjs";
 import { renderCount } from "./renderer";
 import "./style.css";
 
-const count = document.getElementById("count") as HTMLElement;
 const logBtn = document.getElementById("log-button") as HTMLButtonElement;
 
 const logClick$ = fromEvent(logBtn, "click");
