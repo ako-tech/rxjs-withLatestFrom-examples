@@ -1,4 +1,4 @@
-import { fromEvent, map, startWith, switchMap } from "rxjs";
+import { fromEvent, map, startWith, switchMap, withLatestFrom } from "rxjs";
 import { getResults, SearchCategory } from "./data";
 import { renderResults } from "./renderer";
 import "./renderer";
@@ -16,5 +16,8 @@ const categoryChanges$ = fromEvent<InputEvent>(categorySelect, "change").pipe(
 );
 
 searchValueChanges$
-    .pipe(switchMap((searchText) => getResults(searchText)))
+    .pipe(
+        withLatestFrom(categoryChanges$),
+        switchMap(([searchText, category]) => getResults(searchText, category))
+    )
     .subscribe(renderResults);
