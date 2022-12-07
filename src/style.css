@@ -60,3 +60,7 @@ button:hover {
     background-color: #7d29fa;
     outline: none;
 }
+
+button:active {
+    background-color: #5e00ea;
+}
