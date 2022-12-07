@@ -10,14 +10,14 @@ const categorySelect = document.getElementById("category") as HTMLSelectElement;
 const searchValueChanges$ = fromEvent(searchInput, "input").pipe(
     map(({ target }) => (target as HTMLInputElement).value)
 );
-const categoryChange$ = fromEvent<InputEvent>(categorySelect, "change").pipe(
+const categoryChanges$ = fromEvent<InputEvent>(categorySelect, "change").pipe(
     map(({ target }) => (target as HTMLSelectElement).value as SearchCategory),
     startWith(categorySelect.value as SearchCategory)
 );
 
 searchValueChanges$
     .pipe(
-        withLatestFrom(categoryChange$),
+        withLatestFrom(categoryChanges$),
         switchMap(([searchText, category]) => getResults(searchText, category))
     )
     .subscribe(renderResults);
