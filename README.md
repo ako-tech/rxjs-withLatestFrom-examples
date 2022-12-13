@@ -14,6 +14,6 @@ Este repositiorio está creado usando como base el template `Vanilla/Typescript`
 Para levantar el servidor de desarollo ejecutar el comando:
 `npm run dev` o `yarn dev`
 
-### Disclaimer
+## Disclaimer
 
 El código de este repositorio esta creado única y exclusivamente para mostrar el funcionamiento del operador `withLatestFrom`. El código adicional incluído no debe tomarse en ningún caso como ejemplo de buenas prácticas.
